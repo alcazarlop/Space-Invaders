@@ -14,6 +14,8 @@ class Window{
 
 		SDL_Window* getWindow();
 		SDL_Renderer* getRender();
+		int getWidth();
+		int getHeight();
 
 	private:
 		SDL_Window* window;

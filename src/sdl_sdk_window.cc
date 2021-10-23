@@ -3,13 +3,11 @@
 
 Window::Window()
 {
-
 	window = NULL;
 	renderer = NULL;
-	title = "SDL_Test";
-	width = 600;
-	height = 600;
-
+	title = "Space Invaders";
+	width = 448;
+	height = 512;
 }
 
 Window::~Window()
@@ -20,11 +18,9 @@ Window::~Window()
 
 void Window::init()
 {
-
 	window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	SDL_SetRenderDrawColor(renderer, 0x0, 0x0, 0x0, 0x0);
-
 }
 
 SDL_Window* Window::getWindow()
@@ -35,4 +31,14 @@ SDL_Window* Window::getWindow()
 SDL_Renderer* Window::getRender()
 {
 	return renderer;
+}
+
+int Window::getWidth()
+{
+	return width;
+}
+
+int Window::getHeight()
+{
+	return height;
 }

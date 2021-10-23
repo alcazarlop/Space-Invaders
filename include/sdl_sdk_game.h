@@ -5,10 +5,16 @@
 #include <SDL.h>
 #include "sdl_sdk_sprite.h"
 #include "sdl_sdk_window.h"
+#include "player.h"
+#include "shield.h"
+
+const unsigned char kNumberShield = 1;
+
 
 class Game{
 	
 	public:
+		
 		Game();
 		~Game();
 
@@ -22,9 +28,13 @@ class Game{
 		bool running();
 
 	private:
+
+		SDL_Event event;
 		bool isRunning;
-		Sprite sprite;
 		Window display;
+
+		Player player;
+		Shield *shield;
 
 };
 

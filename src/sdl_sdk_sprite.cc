@@ -4,8 +4,8 @@
 Sprite::Sprite()
 {
 	texture = nullptr;
-	width = 0;
-	height = 0;
+	shape.x = 0;
+	shape.y = 0;
 }
 
 Sprite::~Sprite() 
@@ -13,21 +13,21 @@ Sprite::~Sprite()
 	release();
 }
 
-int Sprite::getWidth()
+float Sprite::getWidth()
 {
-	return width;
+	return shape.x;
 }
 
-int Sprite::getHeight() 
+float Sprite::getHeight() 
 { 
-	return height; 
+	return shape.y; 
 }
 
 void Sprite::release()
 {
 	SDL_DestroyTexture(texture); texture = nullptr;
-	width = 0;
-	height = 0;
+	shape.x = 0;
+	shape.y = 0;
 }
 
 SDL_Texture* Sprite::loadFromFile(char* path, SDL_Renderer* renderer) 
@@ -37,12 +37,13 @@ SDL_Texture* Sprite::loadFromFile(char* path, SDL_Renderer* renderer)
 	SDL_Texture* newTexture = SDL_CreateTextureFromSurface(renderer, loadedTexture); //Conver surface to texture
 
 	//Dimensions
-	width = loadedTexture->w; 
-	height = loadedTexture->h;
+	shape.x = (float) loadedTexture->w; 
+	shape.y = (float) loadedTexture->h;
 
 	SDL_FreeSurface(loadedTexture); loadedTexture = nullptr; //Free the previous texture
 
 	texture = newTexture;
+
 	return texture;
 
 }
@@ -60,4 +61,10 @@ SDL_FRect Sprite::transform(float posx, float posy, float w, float h)
 void Sprite::drawTexture(SDL_Renderer* renderer, SDL_FRect dstRect, double angle, SDL_FPoint* center = nullptr)
 {
 	SDL_RenderCopyExF(renderer, texture, nullptr, &dstRect, angle, center, SDL_FLIP_NONE);
+}
+
+void Sprite::drawTexture(SDL_Renderer* renderer, SDL_FPoint pos)
+{
+	SDL_FRect dstRect = {pos.x , pos.y, shape.x, shape.y};
+	SDL_RenderCopyExF(renderer, texture, nullptr, &dstRect, 0.0, nullptr, SDL_FLIP_NONE);
 }

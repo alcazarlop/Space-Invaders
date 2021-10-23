@@ -4,16 +4,23 @@
 
 #include "game_entity.h"
 
-class Player : GameEntity{
+class Player : public GameEntity{
 	
 	public:
 
 		Player();
 		~Player();
 
-		void init();
-		void move(SDL_Event& e);
-		void shot();
+		void init(SDL_Renderer* render, float screen_w, float screen_h);
+		void input(SDL_Event e, float screen_w);
+		void fire();
+		bool hasFired();
+
+		GameEntity shot;
+
+	private:
+
+		bool fired;
 
 };
 
