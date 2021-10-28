@@ -10,12 +10,10 @@ Shield::~Shield(){
 
 }
 
-void Shield::init(SDL_Renderer* render){
+void Shield::init(){
 
 	int width = 16, height = 12;
 	int aux_x = 0 , aux_y = 0;
-
-	sprite.loadFromFile("../data/shield/shield.png", render);
 
 	for(int i = 0; i < kSubsprites; ++i){
 		subsprites[i] = {aux_x, aux_y, width, height};
@@ -28,10 +26,10 @@ void Shield::init(SDL_Renderer* render){
 	}
 }
 
-void Shield::draw(SDL_Renderer* render, float x, float y, SDL_Rect* src){
+void Shield::draw(SDL_Renderer* render, SDL_Texture* texture ,float x, float y, SDL_Rect* src){
 
 	SDL_FRect renderQuad = {x + (float) src->x, y + (float) src->y, (float) src->w, (float) src->h};
-	SDL_RenderCopyExF(render, sprite.getTexture(), src, &renderQuad, 0.0, nullptr, SDL_FLIP_NONE);
+	SDL_RenderCopyExF(render, texture, src, &renderQuad, 0.0, nullptr, SDL_FLIP_NONE);
 
 }
 

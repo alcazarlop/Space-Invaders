@@ -6,15 +6,15 @@
 
 const unsigned char kSubsprites = 16;
 
-class Shield : GameEntity{
+class Shield : public GameEntity{
 	
 	public:
 
 		Shield();
 		~Shield();
 
-		void init(SDL_Renderer* render);
-		void draw(SDL_Renderer* render, float x, float y, SDL_Rect* src);
+		void init();
+		void draw(SDL_Renderer* render, SDL_Texture* texture, float x, float y, SDL_Rect* src);
 		SDL_Rect subsprites[kSubsprites];
 
 	private:

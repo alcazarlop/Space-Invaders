@@ -5,6 +5,9 @@
 
 int main(int argc, char* argv[]){
 
+	argc = 0;
+	argv = nullptr;
+
 	Game game;
 	return game.run();
 

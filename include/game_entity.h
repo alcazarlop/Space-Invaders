@@ -3,7 +3,7 @@
 #define __GAME_ENTITY_H__ 1
 
 #include <SDL.h>
-#include "sdl_sdk_sprite.h"
+#include <SDL_image.h>
 
 class GameEntity{
 
@@ -16,16 +16,15 @@ class GameEntity{
 		void setVelocity(float x, float y);
 		void setPosition(SDL_FPoint pos);
 		void setPosition(float x, float y);
+		void setShape(float x, float y);
 
-		void draw(SDL_Renderer* render);
+		void draw(SDL_Renderer* render, SDL_Texture* texture);
 
 	public:
 
 		SDL_FPoint position;
-		SDL_FPoint shape;
 		SDL_FPoint velocity;
-
-		Sprite sprite;
+		SDL_FPoint shape;
 
 };
 

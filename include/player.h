@@ -11,7 +11,7 @@ class Player : public GameEntity{
 		Player();
 		~Player();
 
-		void init(SDL_Renderer* render, float screen_w, float screen_h);
+		void init(float screen_w, float screen_h);
 		void input(SDL_Event e, float screen_w);
 		void fire();
 		bool hasFired();
